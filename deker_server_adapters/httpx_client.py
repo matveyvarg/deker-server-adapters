@@ -43,7 +43,7 @@ class HttpxClient(Session):
         :param args: arguments to request
         :param kwargs: keyword arguments to request
         """
-        modified_url = self.url_base + url
+        modified_url = self.base_url + url
 
         response = super().request(method, modified_url, *args, **kwargs)
         if response.status_code == TOO_MANY_REQUESTS:
