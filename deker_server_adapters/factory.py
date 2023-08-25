@@ -41,6 +41,7 @@ class AdaptersFactory(BaseAdaptersFactory):
         # Instantiate an httpx client
         self.httpx_client = HttpxClient()
         self.httpx_client.verify = False
+        self.httpx_client.base_url = uri.raw_url
 
         # We have to copy ctx to create new instance of extra
         # so client would be different for every factory

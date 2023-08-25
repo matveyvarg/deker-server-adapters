@@ -37,13 +37,15 @@ def rate_limit_err(response: Response, message: str, class_: Type[DekerBaseRateL
 class HttpxClient(Session):
     """Wrapper around HttpxClient."""
 
-    def request(self, *args: Any, **kwargs: Any) -> Response:
+    def request(self,method, url, *args: Any, **kwargs: Any) -> Response:
         """Override httpx method to handle rate errors.
 
         :param args: arguments to request
         :param kwargs: keyword arguments to request
         """
-        response = super().request(*args, **kwargs)
+        modified_url = self.url_base + url
+
+        response = super().request(method, modified_url, *args, **kwargs)
         if response.status_code == TOO_MANY_REQUESTS:
             rate_limit_err(response=response, message=RATE_ERROR_MESSAGE, class_=DekerRateLimitError)
         elif (
