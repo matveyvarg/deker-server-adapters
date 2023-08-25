@@ -11,6 +11,7 @@ from deker_server_adapters.errors import DekerServerError
 from deker_server_adapters.httpx_client import HttpxClient
 from deker_server_adapters.varray_adapter import ServerVarrayAdapter
 
+from requests import Session
 
 if TYPE_CHECKING:
     from deker.ABC.base_adapters import BaseArrayAdapter, BaseCollectionAdapter, BaseStorageAdapter, BaseVArrayAdapter
@@ -24,10 +25,10 @@ class AdaptersFactory(BaseAdaptersFactory):
     def __init__(self, ctx: "CTX", uri: "Uri") -> None:
         # Make base url, so all urls will be relative
         kwargs = {
-            "base_url": uri.raw_url,
+            # "base_url": uri.raw_url,
             "verify": True,
-            "http2": True,
-            "timeout": None,
+            # "http2": True,
+            # "timeout": None,
         }
 
         # If Uri contains auth params, remember them

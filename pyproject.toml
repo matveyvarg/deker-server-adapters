@@ -56,6 +56,7 @@ priority = "supplemental"
 [tool.poetry.dependencies]
 python = "^3.9"
 httpx = {extras = ["http2"], version = "^0.24.1"}
+requests = "^2.31.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"

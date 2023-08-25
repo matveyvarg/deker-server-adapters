@@ -11,7 +11,7 @@ from deker_server_adapters.consts import (
     TOO_MANY_REQUESTS,
 )
 from deker_server_adapters.errors import DekerBaseRateLimitError, DekerDataPointsLimitError, DekerRateLimitError
-
+from requests import Session
 
 def rate_limit_err(response: Response, message: str, class_: Type[DekerBaseRateLimitError]) -> None:
     """Raise an error with rate limit parameters.
@@ -34,7 +34,7 @@ def rate_limit_err(response: Response, message: str, class_: Type[DekerBaseRateL
     )
 
 
-class HttpxClient(Client):
+class HttpxClient(Session):
     """Wrapper around HttpxClient."""
 
     def request(self, *args: Any, **kwargs: Any) -> Response:
