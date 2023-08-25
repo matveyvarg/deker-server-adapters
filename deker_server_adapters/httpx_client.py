@@ -43,9 +43,9 @@ class HttpxClient(Session):
         :param args: arguments to request
         :param kwargs: keyword arguments to request
         """
-        modified_url = self.base_url + url
+        # modified_url = self.base_url + url
 
-        response = super().request(method, modified_url, *args, **kwargs)
+        response = super().request(method, url, *args, **kwargs)
         if response.status_code == TOO_MANY_REQUESTS:
             rate_limit_err(response=response, message=RATE_ERROR_MESSAGE, class_=DekerRateLimitError)
         elif (
